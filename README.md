@@ -1,0 +1,1 @@
+An autoclicker that tries to recreate human clicks made with Python for Windows
