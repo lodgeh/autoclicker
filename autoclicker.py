@@ -16,6 +16,7 @@ def get_cursor_location():
 def random_seconds_to_wait(min, max):
     random_seconds = random.uniform(min, max)
     time.sleep(random_seconds)
+    return random_seconds
 
 
 def left_click(x, y):
@@ -44,6 +45,13 @@ def double_click(type, x, y):
 
 
 def main(left_or_right, min, max, total_clicks):
+    if not min:
+        min = 0
+    if not max:
+        max = 0
+    if not total_clicks:
+        total_clicks = 1_000_000
+
     click_counter = 0
     while True:
         if click_counter > total_clicks:
@@ -51,7 +59,8 @@ def main(left_or_right, min, max, total_clicks):
             break
         x, y = get_cursor_location()
         double_click(left_or_right, x, y)
-        random_seconds_to_wait(min, max)
+        seconds = random_seconds_to_wait(min, max)
+        print(seconds)
         click_counter += 1
 
 
@@ -67,24 +76,27 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "min_wait",
+        "--min_wait",
         metavar="min_wait",
         type=float,
-        help="The minimum time to wait"
+        help="The minimum time to wait",
+        required=False
     )
 
     parser.add_argument(
-        "max_wait",
+        "--max_wait",
         metavar="max_wait",
         type=float,
-        help="The maximum time to wait"
+        help="The maximum time to wait",    
+        required=False
     )
 
     parser.add_argument(
-        "total_clicks",
+        "--total_clicks",
         metavar="total_clicks",
         type=float,
-        help="The amount of double clicks"
+        help="The amount of double clicks",
+        required=False
     )
 
     args = parser.parse_args()
