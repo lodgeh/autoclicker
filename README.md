@@ -2,11 +2,19 @@ Python autoclicker for left or right doubleclicks with adjustable random wait in
 
 ## Usage
 
+Left click example: 
 ```python
-python3 autoclicker.py left_or_right --min_wait 0.1 --max_wait 5.75 --total_clicks 100
+python3 autoclicker.py left --min_wait 0.1 --max_wait 5.75 --total_clicks 100
 ```
 
-- `left or right`
+Right click example: 
+```python
+python3 autoclicker.py right --min_wait 0.1 --max_wait 5.75 --total_clicks 100
+```
+  
+Function arguments:
+
+- `left_or_right`
     - left or right double click
     - required
     - string
